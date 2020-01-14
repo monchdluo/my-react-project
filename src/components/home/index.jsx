@@ -1,7 +1,16 @@
 import React, { Component } from "react";
 
-export default class Home extends Component {
+import bg from "./dh47.jpg";
+import withCheckLogin from "../../containers/with_check_login";
+
+@withCheckLogin
+class Home extends Component {
   render() {
-    return <div>Home...</div>;
+    return (
+      <div>
+        <img src={bg} alt="bg" />
+      </div>
+    );
   }
 }
+export default Home;

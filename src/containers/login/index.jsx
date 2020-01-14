@@ -1,12 +1,17 @@
 import React, { Component } from "react";
 import { Form, Icon, Input, Button, message } from "antd";
 import { connect } from "react-redux";
+
 import { saveUserAsync } from "../../redux/actions";
+import withCheckLogin from "../with_check_login";
+
 // 图片必须引入，才能被打包
-import logo from "./logo.jpg";
+import logo from "../../assets/imgs/logo.jpg";
 import "./index.less";
+
 const { Item } = Form;
 
+@withCheckLogin
 @connect(null, { saveUserAsync })
 @Form.create()
 class Login extends Component {
