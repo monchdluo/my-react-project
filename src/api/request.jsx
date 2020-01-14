@@ -31,7 +31,7 @@ axiosInstance.interceptors.request.use(config => {
         return p;
       }, "")
       .slice(1);
-    config.headers["content-type"] = "applicaion/x-www-form-urlencoded";
+    config.headers["content-type"] = "application/x-www-form-urlencoded";
   }
   return config;
 });

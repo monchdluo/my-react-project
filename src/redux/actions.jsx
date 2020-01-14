@@ -16,6 +16,8 @@ export const saveUserAsync = (username, password) => {
     // 当前函数返回值，作为将来组件调用时的返回值
     // 异步操作
     return reqLogin(username, password).then(response => {
+      console.log(111);
+
       // 登录成功
       /*
           存储用户数据和token

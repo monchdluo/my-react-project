@@ -6,6 +6,7 @@ import { saveUserAsync } from "../../redux/actions";
 import logo from "./logo.jpg";
 import "./index.less";
 const { Item } = Form;
+
 @connect(null, { saveUserAsync })
 @Form.create()
 class Login extends Component {

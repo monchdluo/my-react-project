@@ -1,8 +1,13 @@
 // 用来根据prevState和action生成newState函数模块
 import { combineReducers } from "redux";
+import { SAVE_USER } from "./action-types";
+import { getItem } from "../utils/storage";
 
-function aaa(prevState = 111, action) {
+const initUser = getItem("user") || {};
+function user(prevState = initUser, action) {
   switch (action.type) {
+    case SAVE_USER:
+      return action.data;
     default:
       return prevState;
   }
@@ -16,6 +21,6 @@ function bbb(prevState = 222, action) {
 }
 
 export default combineReducers({
-  aaa,
+  user,
   bbb
 });
