@@ -3,35 +3,35 @@ import { Card, Button, Icon, Table } from "antd";
 import { connect } from "react-redux";
 
 import { getCategoryListAsync } from "../../redux/actions";
-@connect(state => ({ categoryies: state.categoryies }), {
+
+@connect(state => ({ categories: state.categories }), {
   getCategoryListAsync
 })
 class category extends Component {
   componentDidMount() {
     this.props.getCategoryListAsync();
   }
+  columns = [
+    {
+      title: "品类名称",
+      dataIndex: "name"
+    },
+    {
+      title: "操作",
+      dataIndex: "operation",
+      render() {
+        return (
+          <div>
+            <Button type="link">修改分类</Button>
+            <Button type="link">删除分类</Button>
+          </div>
+        );
+      }
+    }
+  ];
 
   render() {
-    const { categoryies } = this.props;
-
-    const columns = [
-      {
-        title: "品类名称",
-        dataIndex: "categoryName"
-      },
-      {
-        title: "操作",
-        dataIndex: "operation",
-        render() {
-          return (
-            <div>
-              <Button type="link">修改分类</Button>
-              <Button type="link">删除分类</Button>
-            </div>
-          );
-        }
-      }
-    ];
+    const { categories } = this.props;
 
     /* const data = [
       {
@@ -64,8 +64,8 @@ class category extends Component {
           }
         >
           <Table
-            columns={columns}
-            dataSource={categoryies}
+            columns={this.columns}
+            dataSource={categories}
             bordered
             pagination={{
               showSizeChanger: true, // 是否显示改变pageSize
@@ -73,6 +73,7 @@ class category extends Component {
               pageSizeOptions: ["3", "6", "9"],
               defaultPageSize: 3
             }}
+            rowKey="_id"
           />
         </Card>
       </div>

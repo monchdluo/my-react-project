@@ -1,6 +1,7 @@
 // 封装axios的模块
 import axios from "axios";
 import errCode from "../config/error-code";
+import store from "../redux/store";
 
 const axiosInstance = axios.create({
   baseURL: "/api", // 这是公共请求的路径前缀
@@ -17,7 +18,7 @@ axiosInstance.interceptors.request.use(config => {
   // 设置公用参数
 
   // 待处理token
-  let token = "";
+  const token = store.getState().user.token;
   if (token) {
     config.headers.authorization = `Bearer ${token}`;
   }

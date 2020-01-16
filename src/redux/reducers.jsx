@@ -30,8 +30,8 @@ function language(prevState = initLanguage, action) {
   }
 }
 
-const initCategoryies = [];
-function categoryies(prevState = initCategoryies, action) {
+const initCategories = [];
+function categories(prevState = initCategories, action) {
   switch (action.type) {
     case GET_CATEGORY_LIST:
       return action.data;
@@ -43,5 +43,5 @@ function categoryies(prevState = initCategoryies, action) {
 export default combineReducers({
   user,
   language,
-  categoryies
+  categories
 });
