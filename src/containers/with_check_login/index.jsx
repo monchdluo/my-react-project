@@ -38,14 +38,14 @@ export default function withCheckLogin(WrappedComponent) {
       } = this.props;
 
       if (token) {
-        // 说明登录过
+        // 有token说明登录过
         if (pathname === "/login") {
           // 就跳转主页
           return <Redirect to="/" />;
         }
       } else {
         // 说明没登录过
-        if (pathname === "/") {
+        if (pathname !== "/login") {
           // 让你去登录
           return <Redirect to="/login" />;
         }

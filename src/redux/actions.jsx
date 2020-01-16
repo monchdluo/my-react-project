@@ -5,11 +5,20 @@
  * 异步action
  */
 
-import { reqLogin } from "../api";
+import { reqLogin, reqGetCategoryList } from "../api";
 import { setItem } from "../utils/storage";
-import { SAVE_USER } from "./action-types";
+import {
+  SAVE_USER,
+  REMOVE_USER,
+  CHANGE_LANGUAGE,
+  GET_CATEGORY_LIST
+} from "./action-types";
+
+export const changeLanguage = lang => ({ type: CHANGE_LANGUAGE, data: lang });
 
 const saveUser = user => ({ type: SAVE_USER, data: user });
+
+export const removeUser = () => ({ type: REMOVE_USER });
 
 export const saveUserAsync = (username, password) => {
   return dispatch => {
@@ -30,6 +39,21 @@ export const saveUserAsync = (username, password) => {
       setItem("user", response);
       // 触发更新
       dispatch(saveUser(response));
+    });
+  };
+};
+
+const getCategoryList = categoryise => ({
+  type: GET_CATEGORY_LIST,
+  data: categoryise
+});
+
+export const getCategoryListAsync = () => {
+  return dispatch => {
+    // 发送请求
+    reqGetCategoryList().then(req => {
+      // 调用dispath触发更新
+      dispatch(getCategoryList(req));
     });
   };
 };
